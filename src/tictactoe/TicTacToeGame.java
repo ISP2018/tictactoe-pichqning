@@ -3,13 +3,17 @@ package tictactoe;
 import java.util.function.Predicate;
 
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 
+/**
+ * Class for control the logic of this game.
+ * @author Jim
+ *
+ */
 
 public class TicTacToeGame {
-	private final int boardsize;
+	private final int boardSize;
 	/** View of the TicTacToe board. */
 	private Board board;
 	/** Pieces on the board. */
@@ -18,11 +22,15 @@ public class TicTacToeGame {
 	private SimpleBooleanProperty gameOver;
 	
 	private Player nextPlayer = Player.X;
-	
+
+	/**
+	 * Create new game.
+	 * @param size
+	 */
 	public TicTacToeGame(int size) {
-		this.boardsize = size;
-		board = new Board(boardsize,boardsize);   // view of the gameboard
-		pieces = new Piece[boardsize][boardsize]; // stores info about pieces on board
+		this.boardSize = size;
+		board = new Board(boardSize, boardSize);   // view of the gameboard
+		pieces = new Piece[boardSize][boardSize]; // stores info about pieces on board
 		gameOver = new SimpleBooleanProperty(false);
 		startNewGame();
 	}
@@ -30,10 +38,13 @@ public class TicTacToeGame {
 	public Board getBoard() {
 		return board;
 	}
-	
+
+	/**
+	 * Method for starting the new game.
+	 */
 	public void startNewGame() {
 		// Avoid nulls. Assign a "none" object to each location on the board.
-		for(int row=0; row<3; row++) 
+		for(int row=0; row<3; row++)
 			for(int col=0; col<3; col++) pieces[row][col] = Piece.NONE;
 		// Remove Pieces from the board (view), but not the squares themselves. Use a Predicate to test for Piece.
 		Predicate<Node> isPiece = (node) -> node instanceof Piece;
@@ -85,10 +96,10 @@ public class TicTacToeGame {
 		
 		// Look for N matching pieces on same row.
 		rowtest:
-		for(int row=0; row<boardsize; row++) {
+		for(int row = 0; row< boardSize; row++) {
 			Player p = pieces[row][0].type;
 			if (p == Player.NONE) continue;
-			for(int col=1; col<boardsize; col++) {
+			for(int col = 1; col< boardSize; col++) {
 				if (pieces[row][col].type != p) continue rowtest;
 			}
 			// all pieces on this row belong to p
@@ -96,10 +107,10 @@ public class TicTacToeGame {
 		}
 		// Look for N matching pieces on same column
 		coltest:
-		for(int col=0; col<boardsize; col++) {
+		for(int col = 0; col< boardSize; col++) {
 			Player p = pieces[0][col].type;
 			if (p == Player.NONE) continue;
-			for(int row=1; row<boardsize; row++) {
+			for(int row = 1; row< boardSize; row++) {
 				if (pieces[row][col].type != p) continue coltest;
 			}
 			return p;
@@ -147,8 +158,8 @@ public class TicTacToeGame {
 	 */
 	public boolean boardIsFull() {
 		/** check if board is full */
-		for(int row=0; row<boardsize; row++) {
-			for(int col=0; col<boardsize; col++) if (pieces[row][col] == Piece.NONE) return false;
+		for(int row = 0; row< boardSize; row++) {
+			for(int col = 0; col< boardSize; col++) if (pieces[row][col] == Piece.NONE) return false;
 		}
 		return true;
 	}
