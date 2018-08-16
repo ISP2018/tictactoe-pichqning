@@ -23,10 +23,6 @@ public class TicTacToeGame {
 	
 	private Player nextPlayer = Player.X;
 
-	/**
-	 * Create new game.
-	 * @param size
-	 */
 	public TicTacToeGame(int size) {
 		this.boardSize = size;
 		board = new Board(boardSize, boardSize);   // view of the gameboard
