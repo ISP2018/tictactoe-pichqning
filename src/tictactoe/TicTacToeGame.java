@@ -40,8 +40,8 @@ public class TicTacToeGame {
 	 */
 	public void startNewGame() {
 		// Avoid nulls. Assign a "none" object to each location on the board.
-		for(int row=0; row<3; row++)
-			for(int col=0; col<3; col++) pieces[row][col] = Piece.NONE;
+		for(int row=0; row<boardSize; row++)
+			for(int col=0; col<boardSize; col++) pieces[row][col] = Piece.NONE;
 		// Remove Pieces from the board (view), but not the squares themselves. Use a Predicate to test for Piece.
 		Predicate<Node> isPiece = (node) -> node instanceof Piece;
 		board.getChildren().removeIf(isPiece);
@@ -113,13 +113,13 @@ public class TicTacToeGame {
 		}
 		// Look for N matching pieces on downward diagonal.
 		Player p = pieces[0][0].type;
-		if (p != Player.NONE && p == pieces[1][1].type && p == pieces[2][2].type) {
+		if (p != Player.NONE && p == pieces[1][1].type && p == pieces[2][2].type && p == pieces[3][3].type) {
 			// all pieces on diagonal occupied by same type (Player)
 			return p;
 		}
 		// Look for N matching pieces on upward diagonal
-		p = pieces[0][2].type; // start at lower-left corner
-		if (p != Player.NONE && p == pieces[1][1].type && p == pieces[2][0].type) {
+		p = pieces[3][0].type; // start at lower-left corner
+		if (p != Player.NONE && p == pieces[2][1].type && p == pieces[1][2].type && p == pieces[0][3].type) {
 			// all pieces on diagonal occupied by same type (Player)
 			return p;
 		}
