@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="tictactoe-pichqning:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/tictactoe_pichqning_jar</output-path>
-    <root id="archive" name="tictactoe-pichqning.jar">
-      <element id="module-output" name="tictactoe-pichqning" />
-    </root>
-  </artifact>
-</component>
